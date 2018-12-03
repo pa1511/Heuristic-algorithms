@@ -27,7 +27,7 @@ In order to solve this problem you have decided to use the following strategies:
 * NEIGHBORHOOD: Uniform delta coordinate change
 
 You would do this in the following way:
-```
+```java
 double delta = 0.05;
 double acceptableErrorRate = 10e-6;
 int maximumNumberOfGenerations = 1_000_000;
