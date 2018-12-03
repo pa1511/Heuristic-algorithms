@@ -58,6 +58,13 @@ public class LinearSystemParameterDetection {
 		}
 		graph.display();
 
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//Start solution
 		int variableNumber = linearFunction.getCoefficientCount();
 		DoubleArraySolution startSolution = new DoubleArraySolution(new double[variableNumber]);
