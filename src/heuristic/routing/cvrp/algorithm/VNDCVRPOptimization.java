@@ -139,7 +139,7 @@ public class VNDCVRPOptimization implements ICVRPOptimize {
 								
 								int s1 = originalRoute1.get(cs);
 								int s2 = originalRoute2.get(ns);
-								int[] demands = description.demand;
+								double[] demands = description.demand;
 								
 								if(originalRoute1.getDemand()-demands[s1]+demands[s2]>description.capacity ||
 										originalRoute2.getDemand()-demands[s2]+demands[s1]>description.capacity)

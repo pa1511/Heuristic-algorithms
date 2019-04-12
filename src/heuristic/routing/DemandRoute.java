@@ -3,16 +3,16 @@ package heuristic.routing;
 
 public abstract class DemandRoute<T extends DemandRoute<T>> extends Route<T> {
 	
-	protected int[] demands;
+	protected double[] demands;
 	//
-	protected int demand = 0;
+	protected double demand = 0;
 	
-	public DemandRoute(double[][] distances, int[] demands) {
+	public DemandRoute(double[][] distances, double[] demands) {
 		super(distances);
 		this.demands = demands;
 	}
 	
-	protected DemandRoute(double[][] distances, int[] demands,int[] stations,int size, double length, int demand) {
+	protected DemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand) {
 		super(distances,stations,size,length);
 		this.demand = demand;
 		this.demands = demands;
@@ -21,21 +21,21 @@ public abstract class DemandRoute<T extends DemandRoute<T>> extends Route<T> {
 	@Override
 	public abstract DemandRoute<T> clone();
 
-	protected void add(int station, double lengthChange, int demandChange) {
+	protected void add(int station, double lengthChange, double demandChange) {
 		add(station,lengthChange);
 		this.demand+=demandChange;
 	}
 
-	protected void addAll(@SuppressWarnings("hiding") int[] stations, double lengthChange, int demandChange) {
+	protected void addAll(@SuppressWarnings("hiding") int[] stations, double lengthChange, double demandChange) {
 		addAll(stations, stations.length, lengthChange, demandChange);
 	}
 
-	protected void addAll(@SuppressWarnings("hiding") int[] stations, int n, double lengthChange, int demandChange) {
+	protected void addAll(@SuppressWarnings("hiding") int[] stations, int n, double lengthChange, double demandChange) {
 		addAll(stations, n, lengthChange);
 		this.demand+=demandChange;
 	}
 
-	protected int removeAt(int i, double lengthChange, int demandChange) {
+	protected int removeAt(int i, double lengthChange, double demandChange) {
 		this.demand+=demandChange;
 		return removeAt(i, lengthChange);
 	}
@@ -46,7 +46,7 @@ public abstract class DemandRoute<T extends DemandRoute<T>> extends Route<T> {
 		demand = 0;
 	}
 	
-	public int getDemand() {
+	public double getDemand() {
 		return demand;
 	}
 	
@@ -63,7 +63,7 @@ public abstract class DemandRoute<T extends DemandRoute<T>> extends Route<T> {
 		}
 	}
 	
-	public int[] getDemands() {
+	public double[] getDemands() {
 		return demands;
 	}
 	

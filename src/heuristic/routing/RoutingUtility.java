@@ -81,11 +81,11 @@ public class RoutingUtility {
 	
 	//=====================================================================================================
 
-	public static int calculateDemand(int[] stations, int[] demands) {
+	public static double calculateDemand(int[] stations, double[] demands) {
 		return calculateDemand(stations.length, stations, demands);
 	}
 
-	public static int calculateDemand(int n, int[] stations, int[] demands) {
+	public static double calculateDemand(int n, int[] stations, double[] demands) {
 		int demand = 0;
 		for(int i=0; i<n; i++) {
 			int station = stations[i];

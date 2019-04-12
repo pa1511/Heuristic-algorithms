@@ -14,10 +14,10 @@ public class CVRPDescription {
 	public final int dimension;
 	public final int capacity;
 	public final int[][] locations;
-	public final int[] demand;
+	public final double[] demand;
 	public final double[][] distance;
 
-	public CVRPDescription(int dim, int cap, int[][] locations, int[] demands, EdgeWeightType edgeWeightType) {
+	public CVRPDescription(int dim, int cap, int[][] locations, double[] demands, EdgeWeightType edgeWeightType) {
 		this.dimension = dim;
 		this.capacity = cap;
 		this.locations = locations;
@@ -62,7 +62,7 @@ public class CVRPDescription {
 		int cap = 0;
 		EdgeWeightType edgeWeightType = null;
 		int[][] locations = null;
-		int[] demands = null;
+		double[] demands = null;
 		
 		
 		ReadState state = ReadState.GENERAL_INFO;
@@ -76,7 +76,7 @@ public class CVRPDescription {
 			if(line.startsWith("DIMENSION")) {
 				dim = Integer.parseInt(line.replace("DIMENSION :", "").trim());
 				locations = new int[dim][2];
-				demands = new int[dim];
+				demands = new double[dim];
 			}
 			else if(line.startsWith("EDGE_WEIGHT_TYPE")) {
 				line = line.replace("EDGE_WEIGHT_TYPE :", "").trim();
@@ -106,7 +106,7 @@ public class CVRPDescription {
 				else if(state==ReadState.NODE_DEMANDS) {
 					String[] data = line.split(" ");
 					int id = Integer.parseInt(data[0].trim())-1;
-					int demand = Integer.parseInt(data[1].trim());
+					double demand = Double.parseDouble(data[1].trim());
 					demands[id] = demand;
 				}
 			}

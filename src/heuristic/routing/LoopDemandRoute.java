@@ -2,17 +2,17 @@ package heuristic.routing;
 
 public class LoopDemandRoute extends DemandRoute<LoopDemandRoute>{
 
-	public LoopDemandRoute(double[][] distances, int[] demands) {
+	public LoopDemandRoute(double[][] distances, double[] demands) {
 		super(distances, demands);
 	}
 
-	protected LoopDemandRoute(double[][] distances, int[] demands,int[] stations,int size, double length, int demand) {
+	protected LoopDemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand) {
 		super(distances,demands,stations,size,length,demand);
 	}
 	
 	@Override
 	public void add(int station) {
-		int demandChange = demands[station];
+		double demandChange = demands[station];
 		double lengthChange = 0;
 		
 		if(!isEmpty()) {
@@ -28,7 +28,7 @@ public class LoopDemandRoute extends DemandRoute<LoopDemandRoute>{
 
 	@Override
 	protected void addAll(int n, @SuppressWarnings("hiding") int[] stations) {
-		int demandChange = RoutingUtility.calculateDemand(n, stations, demands);
+		double demandChange = RoutingUtility.calculateDemand(n, stations, demands);
 		double lengthChange;
 		if(isEmpty()) {
 			lengthChange = RoutingUtility.calculateLoopLength(stations, n, distances);
@@ -47,7 +47,7 @@ public class LoopDemandRoute extends DemandRoute<LoopDemandRoute>{
 	public int removeAt(int location) {
 		int rs = get(location);
 
-		int demandChange = -1*demands[rs];
+		double demandChange = -1*demands[rs];
 		double lengthChange = 0;
 		
 		if(size==1) {

@@ -14,6 +14,8 @@ import heuristic.routing.LoopDemandRoute;
 public class RouteTest {
 
 	
+	private static final double DELTA = 1e-3;
+
 	@Test
 	public void chainRoutTestAddAll() {
 		//Define
@@ -24,7 +26,7 @@ public class RouteTest {
 				distances[i][j]=Math.abs(i-j);
 			}
 		}
-		int[] demands = new int[N];
+		double[] demands = new double[N];
 		Arrays.fill(demands, 1);
 		
 		//Change
@@ -38,7 +40,7 @@ public class RouteTest {
 		
 		assertArrayEquals(new int[] {1,2,3,4}, route1.toArray());
 		assertEquals(3, route1.getLength(),1e-6);
-		assertEquals(4, route1.getDemand());
+		assertEquals(4, route1.getDemand(),DELTA);
 		System.out.println("Route: " + route1.toString());
 	}
 	
@@ -53,7 +55,7 @@ public class RouteTest {
 				distances[i][j]=Math.abs(i-j);
 			}
 		}
-		int[] demands = new int[N];
+		double[] demands = new double[N];
 		Arrays.fill(demands, 1);
 		
 		//Change
@@ -65,7 +67,7 @@ public class RouteTest {
 		//Check
 		assertArrayEquals(new int[] {1,2,3}, route.toArray());
 		assertEquals(2, route.getLength(),1e-6);
-		assertEquals(3, route.getDemand());
+		assertEquals(3, route.getDemand(),DELTA);
 		System.out.println("Route: " + route.toString());
 		
 		//Change
@@ -73,7 +75,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(2, route.getLength(),1e-6);
-		assertEquals(2, route.getDemand());
+		assertEquals(2, route.getDemand(),DELTA);
 		assertArrayEquals(new int[] {1,3}, route.toArray());
 		System.out.println("Route: " + route.toString());
 		
@@ -82,7 +84,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(5, route.getLength(),1e-6);
-		assertEquals(5, route.getDemand());
+		assertEquals(5, route.getDemand(),DELTA);
 		assertArrayEquals(new int[] {1,3,4,5,6}, route.toArray());
 		System.out.println("Route: " + route.toString());
 	
@@ -91,8 +93,8 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(route.size(), clone.size());
-		assertEquals(route.getDemand(), clone.getDemand());
-		assertEquals(route.getLength(), clone.getLength(), 1e-6);
+		assertEquals(route.getDemand(), clone.getDemand(),DELTA);
+		assertEquals(route.getLength(), clone.getLength(),DELTA);
 		assertArrayEquals(route.getArray(), clone.getArray());
 		
 		//Change
@@ -100,7 +102,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(3, clone.getLength(),1e-6);
-		assertEquals(4, clone.getDemand());
+		assertEquals(4, clone.getDemand(),DELTA);
 		assertArrayEquals(new int[] {3,4,5,6}, clone.toArray());
 		System.out.println("Route: " + clone.toString());
 		
@@ -109,8 +111,8 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(clone.size(), route.size());
-		assertEquals(clone.getDemand(), route.getDemand());
-		assertEquals(clone.getLength(), route.getLength(), 1e-6);
+		assertEquals(clone.getDemand(), route.getDemand(),DELTA);
+		assertEquals(clone.getLength(), route.getLength(),DELTA);
 		assertArrayEquals(clone.getArray(), route.getArray());
 	}
 	
@@ -125,7 +127,7 @@ public class RouteTest {
 				distances[i][j]=Math.abs(i-j);
 			}
 		}
-		int[] demands = new int[N];
+		double[] demands = new double[N];
 		Arrays.fill(demands, 1);
 		
 		//Change
@@ -139,7 +141,7 @@ public class RouteTest {
 		
 		assertArrayEquals(new int[] {1,2,3,4}, route1.toArray());
 		assertEquals(6, route1.getLength(),1e-6);
-		assertEquals(4, route1.getDemand());
+		assertEquals(4, route1.getDemand(),DELTA);
 		System.out.println("Route: " + route1.toString());
 	}
 
@@ -154,7 +156,7 @@ public class RouteTest {
 				distances[i][j]=Math.abs(i-j);
 			}
 		}
-		int[] demands = new int[N];
+		double[] demands = new double[N];
 		Arrays.fill(demands, 1);
 		
 		//Change
@@ -166,7 +168,7 @@ public class RouteTest {
 		//Check
 		assertArrayEquals(new int[] {1,2,3}, route.toArray());
 		assertEquals(4, route.getLength(),1e-6);
-		assertEquals(3, route.getDemand());
+		assertEquals(3, route.getDemand(),DELTA);
 		System.out.println("Route: " + route.toString());
 		
 		//Change
@@ -174,7 +176,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(4, route.getLength(),1e-6);
-		assertEquals(2, route.getDemand());
+		assertEquals(2, route.getDemand(),DELTA);
 		assertArrayEquals(new int[] {1,3}, route.toArray());
 		System.out.println("Route: " + route.toString());
 		
@@ -183,7 +185,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(10, route.getLength(),1e-6);
-		assertEquals(5, route.getDemand());
+		assertEquals(5, route.getDemand(),DELTA);
 		assertArrayEquals(new int[] {1,3,4,5,6}, route.toArray());
 		System.out.println("Route: " + route.toString());
 	
@@ -192,8 +194,8 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(route.size(), clone.size());
-		assertEquals(route.getDemand(), clone.getDemand());
-		assertEquals(route.getLength(), clone.getLength(), 1e-6);
+		assertEquals(route.getDemand(), clone.getDemand(),DELTA);
+		assertEquals(route.getLength(), clone.getLength(),DELTA);
 		assertArrayEquals(route.getArray(), clone.getArray());
 		
 		//Change
@@ -201,7 +203,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(6, clone.getLength(),1e-6);
-		assertEquals(4, clone.getDemand());
+		assertEquals(4, clone.getDemand(),DELTA);
 		assertArrayEquals(new int[] {3,4,5,6}, clone.toArray());
 		System.out.println("Route: " + clone.toString());
 		
@@ -210,8 +212,8 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(clone.size(), route.size());
-		assertEquals(clone.getDemand(), route.getDemand());
-		assertEquals(clone.getLength(), route.getLength(), 1e-6);
+		assertEquals(clone.getDemand(), route.getDemand(),DELTA);
+		assertEquals(clone.getLength(), route.getLength(),DELTA);
 		assertArrayEquals(clone.getArray(), route.getArray());
 	}
 	
@@ -226,7 +228,7 @@ public class RouteTest {
 				distances[i][j]=Math.abs(i-j);
 			}
 		}
-		int[] demands = new int[N];
+		double[] demands = new double[N];
 		Arrays.fill(demands, 1);
 		
 		//Change
@@ -240,7 +242,7 @@ public class RouteTest {
 		
 		assertArrayEquals(new int[] {1,2,3,4}, route1.toArray());
 		assertEquals(8, route1.getLength(),1e-6);
-		assertEquals(4, route1.getDemand());
+		assertEquals(4, route1.getDemand(),DELTA);
 		System.out.println("Route: " + route1.toString());
 	}
 
@@ -255,7 +257,7 @@ public class RouteTest {
 				distances[i][j]=Math.abs(i-j);
 			}
 		}
-		int[] demands = new int[N];
+		double[] demands = new double[N];
 		Arrays.fill(demands, 1);
 		
 		//Change
@@ -267,7 +269,7 @@ public class RouteTest {
 		//Check
 		assertArrayEquals(new int[] {1,2,3}, route.toArray());
 		assertEquals(6, route.getLength(),1e-6);
-		assertEquals(3, route.getDemand());
+		assertEquals(3, route.getDemand(),DELTA);
 		System.out.println("Route: " + route.toString());
 		
 		//Change
@@ -275,7 +277,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(6, route.getLength(),1e-6);
-		assertEquals(2, route.getDemand());
+		assertEquals(2, route.getDemand(),DELTA);
 		assertArrayEquals(new int[] {1,3}, route.toArray());
 		System.out.println("Route: " + route.toString());
 		
@@ -284,7 +286,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(12, route.getLength(),1e-6);
-		assertEquals(5, route.getDemand());
+		assertEquals(5, route.getDemand(),DELTA);
 		assertArrayEquals(new int[] {1,3,4,5,6}, route.toArray());
 		System.out.println("Route: " + route.toString());
 	
@@ -293,8 +295,8 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(route.size(), clone.size());
-		assertEquals(route.getDemand(), clone.getDemand());
-		assertEquals(route.getLength(), clone.getLength(), 1e-6);
+		assertEquals(route.getDemand(), clone.getDemand(),DELTA);
+		assertEquals(route.getLength(), clone.getLength(),DELTA);
 		assertArrayEquals(route.getArray(), clone.getArray());
 		
 		//Change
@@ -302,7 +304,7 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(12, clone.getLength(),1e-6);
-		assertEquals(4, clone.getDemand());
+		assertEquals(4, clone.getDemand(),DELTA);
 		assertArrayEquals(new int[] {3,4,5,6}, clone.toArray());
 		System.out.println("Route: " + clone.toString());
 		
@@ -311,8 +313,8 @@ public class RouteTest {
 		
 		//Check
 		assertEquals(clone.size(), route.size());
-		assertEquals(clone.getDemand(), route.getDemand());
-		assertEquals(clone.getLength(), route.getLength(), 1e-6);
+		assertEquals(clone.getDemand(), route.getDemand(),DELTA);
+		assertEquals(clone.getLength(), route.getLength(),DELTA);
 		assertArrayEquals(clone.getArray(), route.getArray());
 	}
 

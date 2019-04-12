@@ -2,11 +2,11 @@ package heuristic.routing;
 
 public class ChainDemandRoute extends DemandRoute<ChainDemandRoute> {
 
-	public ChainDemandRoute(double[][] distances, int[] demands) {
+	public ChainDemandRoute(double[][] distances, double[] demands) {
 		super(distances, demands);
 	}
 
-	protected ChainDemandRoute(double[][] distances, int[] demands,int[] stations,int size, double length, int demand) {
+	protected ChainDemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand) {
 		super(distances,demands,stations,size,length,demand);
 	}
 	
@@ -20,7 +20,7 @@ public class ChainDemandRoute extends DemandRoute<ChainDemandRoute> {
 
 	@Override
 	protected void addAll(int n, @SuppressWarnings("hiding") int[] stations) {
-		int demandChange = RoutingUtility.calculateDemand(n, stations, demands);
+		double demandChange = RoutingUtility.calculateDemand(n, stations, demands);
 		double lengthChange = RoutingUtility.calculateChainLength(stations, n, distances);
 		if(!isEmpty()) {
 			lengthChange+=distances[getLast()][stations[0]];
@@ -33,7 +33,7 @@ public class ChainDemandRoute extends DemandRoute<ChainDemandRoute> {
 	public int removeAt(int location) {
 		int rs = get(location);
 		
-		int demandChange = -1*demands[rs];
+		double demandChange = -1*demands[rs];
 		double lengthChange = 0;
 		
 		if(location==0) {
