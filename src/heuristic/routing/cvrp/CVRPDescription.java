@@ -13,11 +13,11 @@ public class CVRPDescription {
 
 	public final int dimension;
 	private final double[] capacity;
-	public final int[][] locations;
+	public final double[][] locations;
 	public final double[] demand;
 	public final double[][] distance;
 
-	public CVRPDescription(int dim, double[] cap, int[][] locations, double[] demands, EdgeWeightType edgeWeightType) {
+	public CVRPDescription(int dim, double[] cap, double[][] locations, double[] demands, EdgeWeightType edgeWeightType) {
 		this.dimension = dim;
 		this.capacity = cap;
 		this.locations = locations;
@@ -46,7 +46,7 @@ public class CVRPDescription {
 		stringBuilder.append("Dimension").append(this.dimension).append("\n");
 		//
 		stringBuilder.append("Locations:").append("\n");
-		for(int[] location:locations)
+		for(double[] location:locations)
 			stringBuilder.append(Arrays.toString(location)).append("\n");
 		//
 		stringBuilder.append("Demands:").append("\n");
@@ -67,7 +67,7 @@ public class CVRPDescription {
 		int dim = 0;
 		double[] cap = null;
 		EdgeWeightType edgeWeightType = null;
-		int[][] locations = null;
+		double[][] locations = null;
 		double[] demands = null;
 		
 		
@@ -81,7 +81,7 @@ public class CVRPDescription {
 			
 			if(line.startsWith("DIMENSION")) {
 				dim = Integer.parseInt(line.replace("DIMENSION :", "").trim());
-				locations = new int[dim][2];
+				locations = new double[dim][2];
 				demands = new double[dim];
 			}
 			else if(line.startsWith("EDGE_WEIGHT_TYPE")) {
@@ -105,8 +105,8 @@ public class CVRPDescription {
 				if(state==ReadState.NODE_COORDINATE) {
 					String[] data = line.split(" ");
 					int id = Integer.parseInt(data[0].trim())-1;
-					int x = Integer.parseInt(data[1].trim());
-					int y = Integer.parseInt(data[2].trim());
+					double x = Double.parseDouble(data[1].trim());
+					double y = Double.parseDouble(data[2].trim());
 					locations[id][0] = x;
 					locations[id][1] = y;
 				}
