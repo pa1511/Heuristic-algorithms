@@ -21,7 +21,7 @@ public class DistanceBasedInitSolutionGenerator implements ICVRPSolutionGenerato
 
 		// Define routes
 		do {
-			DemandRoute route = new ImplicitLoopDemandRoute(description.distance,description.demand);
+			DemandRoute route = new ImplicitLoopDemandRoute(description.distance,description.demand,description.getCapacity(routes.routes.size()));
 
 			// add initial station to the route
 			int station = unassignedStations.removeAt(0);
@@ -37,7 +37,7 @@ public class DistanceBasedInitSolutionGenerator implements ICVRPSolutionGenerato
 					int potentialStation = unassignedStations.get(i);
 
 					// the route would be overloaded
-					if (route.getDemand() + description.demand[potentialStation] > description.capacity)
+					if (route.getDemand() + description.demand[potentialStation] > route.capacity)
 						continue;
 
 					// calculate the distance from the potential station to the route

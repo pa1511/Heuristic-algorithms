@@ -12,12 +12,12 @@ import heuristic.routing.WeightCalculationFunction;
 public class CVRPDescription {
 
 	public final int dimension;
-	public final int capacity;
+	private final double[] capacity;
 	public final int[][] locations;
 	public final double[] demand;
 	public final double[][] distance;
 
-	public CVRPDescription(int dim, int cap, int[][] locations, double[] demands, EdgeWeightType edgeWeightType) {
+	public CVRPDescription(int dim, double[] cap, int[][] locations, double[] demands, EdgeWeightType edgeWeightType) {
 		this.dimension = dim;
 		this.capacity = cap;
 		this.locations = locations;
@@ -32,11 +32,17 @@ public class CVRPDescription {
 		}
 	}
 	
+	public double getCapacity(int i) {
+		if(i>=capacity.length)
+			return capacity[0];
+		return capacity[i];
+	}
+	
 	@Override
 	public String toString() {
 		
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Capacity").append(this.capacity).append("\n");
+		stringBuilder.append("Capacity").append(Arrays.toString(this.capacity)).append("\n");
 		stringBuilder.append("Dimension").append(this.dimension).append("\n");
 		//
 		stringBuilder.append("Locations:").append("\n");
@@ -59,7 +65,7 @@ public class CVRPDescription {
 	public static CVRPDescription getDescription(String fileName) throws IOException {
 		
 		int dim = 0;
-		int cap = 0;
+		double[] cap = null;
 		EdgeWeightType edgeWeightType = null;
 		int[][] locations = null;
 		double[] demands = null;
@@ -83,7 +89,8 @@ public class CVRPDescription {
 				edgeWeightType = EdgeWeightType.getWeightType(line);
 			}
 			else if(line.startsWith("CAPACITY")){
-				cap = Integer.parseInt(line.replace("CAPACITY :", "").trim());
+				double capacity = Double.parseDouble(line.replace("CAPACITY :", "").trim());
+				cap = new double[] {capacity};
 			}
 			else if(line.startsWith("NODE_COORD_SECTION")) {
 				state = ReadState.NODE_COORDINATE;

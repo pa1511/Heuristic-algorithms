@@ -2,12 +2,12 @@ package heuristic.routing;
 
 public class ImplicitLoopDemandRoute extends DemandRoute<ImplicitLoopDemandRoute>{
 
-	public ImplicitLoopDemandRoute(double[][] distances, double[] demands) {
-		super(distances, demands);
+	public ImplicitLoopDemandRoute(double[][] distances, double[] demands,double capacity) {
+		super(distances, demands, capacity);
 	}
 
-	protected ImplicitLoopDemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand) {
-		super(distances,demands,stations,size,length,demand);
+	protected ImplicitLoopDemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand, double capacity) {
+		super(distances,demands,stations,size,length,demand,capacity);
 	}
 	
 	@Override
@@ -78,7 +78,7 @@ public class ImplicitLoopDemandRoute extends DemandRoute<ImplicitLoopDemandRoute
 
 	@Override
 	public ImplicitLoopDemandRoute clone() {
-		return new ImplicitLoopDemandRoute(distances, demands, stations, size, length, demand);
+		return new ImplicitLoopDemandRoute(distances, demands, stations, size, length, demand, capacity);
 	}
 
 

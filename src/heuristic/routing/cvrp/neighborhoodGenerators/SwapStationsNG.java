@@ -37,7 +37,7 @@ public final class SwapStationsNG implements INeighborGenerator<DemandRoutesSolu
 		route2.add(s1);
 		
 		//If the produced solution is not valid we don't want to loose our time on it
-		if(route1.getDemand()<=description.capacity && route2.getDemand()<=description.capacity) {
+		if(route1.getDemand()<=route1.capacity && route2.getDemand()<=route2.capacity) {
 			CVRPUtility.optimizeRoute(route1);
 			CVRPUtility.optimizeRoute(route2);
 		}

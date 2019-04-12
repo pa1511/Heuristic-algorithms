@@ -33,7 +33,7 @@ public final class ChangeStationRoute implements INeighborhood<DemandRoutesSolut
 					
 					int station = originalRoute.get(cs);
 					
-					if(element.routes.get(nr).getDemand()+description.demand[station]>description.capacity)
+					if(element.routes.get(nr).getDemand()+description.demand[station]>element.routes.get(nr).capacity)
 						continue;
 
 					

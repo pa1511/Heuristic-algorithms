@@ -6,16 +6,19 @@ public abstract class DemandRoute<T extends DemandRoute<T>> extends Route<T> {
 	protected double[] demands;
 	//
 	protected double demand = 0;
+	public final double capacity;
 	
-	public DemandRoute(double[][] distances, double[] demands) {
+	public DemandRoute(double[][] distances, double[] demands, double capacity) {
 		super(distances);
 		this.demands = demands;
+		this.capacity = capacity;
 	}
 	
-	protected DemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand) {
+	protected DemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand, double capacity) {
 		super(distances,stations,size,length);
 		this.demand = demand;
 		this.demands = demands;
+		this.capacity = capacity;
 	}
 	
 	@Override

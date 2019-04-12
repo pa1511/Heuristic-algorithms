@@ -27,22 +27,25 @@ public final class MergeRoutes_V2 extends INeighborhood_V2<DemandRoutesSolution>
 	public void neighborhood(DemandRoutesSolution[] population, int id, List<DemandRoutesSolution> neighbors) {
 		neighborAcceptanceTest.startingNegihborhoodGeneration(population);
 		neighborhoodGenerationStopTest.startingNegihborhoodGeneration(population);
-		
+				
 		DemandRoutesSolution element = population[id];
 		all:
 		for(int cr=0,size=element.routes.size(); cr<size; cr++) {
 			for(int nr=cr+1; nr<size; nr++) {
 				
-				if(element.get(cr).isEmpty() || element.get(nr).isEmpty())
+				int r1 = (element.get(cr).capacity>=element.get(nr).capacity) ? cr : nr;
+				int r2 = (element.get(cr).capacity>=element.get(nr).capacity) ? nr : cr;
+							
+				if(element.get(r1).isEmpty() || element.get(r2).isEmpty())
 					continue;
 				
-				if(element.get(cr).getDemand()+element.get(nr).getDemand()>description.capacity)
+				if(element.get(r1).getDemand()+element.get(r2).getDemand()>element.get(r1).capacity)
 					continue;
 				
 					
 				DemandRoutesSolution neighbor = element.clone();
-				DemandRoute route1 = neighbor.get(cr);
-				DemandRoute route2 = neighbor.get(nr);
+				DemandRoute route1 = neighbor.get(r1);
+				DemandRoute route2 = neighbor.get(r2);
 
 				double originalLength = route1.getLength()+route2.getLength();
 

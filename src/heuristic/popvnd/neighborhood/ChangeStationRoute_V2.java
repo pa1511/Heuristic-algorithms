@@ -39,7 +39,8 @@ public final class ChangeStationRoute_V2 extends INeighborhood_V2<DemandRoutesSo
 					
 					int station = originalRoute.get(cs);
 					
-					if(element.routes.get(nr).getDemand()+description.demand[station]>description.capacity)
+					DemandRoute nextDemandRoute = element.routes.get(nr);
+					if(nextDemandRoute.getDemand()+description.demand[station]>nextDemandRoute.capacity)
 						continue;
 
 					

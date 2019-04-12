@@ -29,7 +29,8 @@ public class ClarkeWrightSolutionGenerator implements ICVRPSolutionGenerator{
 		int[] routeAffiliation = new int[description.dimension];
 		int[] possitionInRoute = new int[description.dimension];
 		for(int i=1; i<description.dimension;i++) {
-			DemandRoute route = new ImplicitLoopDemandRoute(description.distance, description.demand);
+			int routeId = solution.routes.size();
+			DemandRoute route = new ImplicitLoopDemandRoute(description.distance, description.demand,description.getCapacity(routeId));
 			route.add(i);
 			solution.add(route);
 			routeAffiliation[i]=i-1;
@@ -72,12 +73,12 @@ public class ClarkeWrightSolutionGenerator implements ICVRPSolutionGenerator{
 				continue;
 			}
 			
-			if(route1.getDemand()+route2.getDemand()>description.capacity) {
-				continue;
-			}
 
 			switch (caseId) {
 				case 0:
+					if(route1.getDemand()+route2.getDemand()>route1.capacity) {
+						continue;
+					}
 					route1.flip();
 					for(int i=0,size=route2.size(); i<size; i++) {
 						route1.add(route2.get(i));
@@ -85,18 +86,27 @@ public class ClarkeWrightSolutionGenerator implements ICVRPSolutionGenerator{
 					route2.removeAll();
 					break;
 				case 1:
+					if(route1.getDemand()+route2.getDemand()>route2.capacity) {
+						continue;
+					}
 					for(int i=0,size=route1.size(); i<size; i++) {
 						route2.add(route1.get(i));
 					}
 					route1.removeAll();
 					break;
 				case 2:
+					if(route1.getDemand()+route2.getDemand()>route1.capacity) {
+						continue;
+					}
 					for(int i=0,size=route2.size(); i<size; i++) {
 						route1.add(route2.get(i));
 					}
 					route2.removeAll();
 					break;
 				case 3:
+					if(route1.getDemand()+route2.getDemand()>route1.capacity) {
+						continue;
+					}
 					route2.flip();
 					for(int i=0,size=route2.size(); i<size; i++) {
 						route1.add(route2.get(i));

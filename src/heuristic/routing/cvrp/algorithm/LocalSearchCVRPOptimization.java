@@ -62,7 +62,7 @@ public class LocalSearchCVRPOptimization implements ICVRPOptimize{
 				for(DemandRoute route:solutionRoutes) {
 					if(route.isEmpty())
 						continue;
-					error+=500*Math.max(0, route.getDemand()-description.capacity);
+					error+=500*Math.max(0, route.getDemand()-route.capacity);
 				}
 								
 				return error+solutionRoutes.length;

@@ -2,12 +2,12 @@ package heuristic.routing;
 
 public class LoopDemandRoute extends DemandRoute<LoopDemandRoute>{
 
-	public LoopDemandRoute(double[][] distances, double[] demands) {
-		super(distances, demands);
+	public LoopDemandRoute(double[][] distances, double[] demands, double capacity) {
+		super(distances, demands, capacity);
 	}
 
-	protected LoopDemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand) {
-		super(distances,demands,stations,size,length,demand);
+	protected LoopDemandRoute(double[][] distances, double[] demands,int[] stations,int size, double length, double demand, double capacity) {
+		super(distances,demands,stations,size,length,demand, capacity);
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class LoopDemandRoute extends DemandRoute<LoopDemandRoute>{
 
 	@Override
 	public LoopDemandRoute clone() {
-		return new LoopDemandRoute(distances, demands, stations, size, length, demand);
+		return new LoopDemandRoute(distances, demands, stations, size, length, demand, capacity);
 	}
 
 }

@@ -34,7 +34,7 @@ public final class ChangeStationRouteNG implements INeighborGenerator<DemandRout
 		route1.add(s2);
 		
 		//If the produced solution is not valid we don't want to loose our time on it
-		if(route1.getDemand()<=description.capacity && route2.getDemand()<=description.capacity) {
+		if(route1.getDemand()<=route1.capacity && route2.getDemand()<=route2.capacity) {
 			CVRPUtility.optimizeRoute(route1);
 			CVRPUtility.optimizeRoute(route2);
 		}

@@ -36,8 +36,8 @@ public final class SwapStations implements INeighborhood<DemandRoutesSolution> {
 						int s2 = originalRoute2.get(ns);
 						double[] demands = description.demand;
 						
-						if(originalRoute1.getDemand()-demands[s1]+demands[s2]>description.capacity ||
-								originalRoute2.getDemand()-demands[s2]+demands[s1]>description.capacity)
+						if(originalRoute1.getDemand()-demands[s1]+demands[s2]>originalRoute1.capacity ||
+								originalRoute2.getDemand()-demands[s2]+demands[s1]>originalRoute2.capacity)
 							continue;
 						
 						

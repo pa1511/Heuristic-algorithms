@@ -15,6 +15,7 @@ public class RouteTest {
 
 	
 	private static final double DELTA = 1e-3;
+	private static final double capacity = 1000;
 
 	@Test
 	public void chainRoutTestAddAll() {
@@ -30,8 +31,8 @@ public class RouteTest {
 		Arrays.fill(demands, 1);
 		
 		//Change
-		ChainDemandRoute route1 = new ChainDemandRoute(distances,demands);
-		ChainDemandRoute route2 = new ChainDemandRoute(distances,demands);
+		ChainDemandRoute route1 = new ChainDemandRoute(distances,demands,capacity);
+		ChainDemandRoute route2 = new ChainDemandRoute(distances,demands,capacity);
 		
 		route1.addAll(new int[] {1,2});
 		route2.addAll(new int[] {3,4});
@@ -59,7 +60,7 @@ public class RouteTest {
 		Arrays.fill(demands, 1);
 		
 		//Change
-		ChainDemandRoute route = new ChainDemandRoute(distances,demands);
+		ChainDemandRoute route = new ChainDemandRoute(distances,demands,capacity);
 		route.add(1);
 		route.add(2);
 		route.add(3);
@@ -131,8 +132,8 @@ public class RouteTest {
 		Arrays.fill(demands, 1);
 		
 		//Change
-		LoopDemandRoute route1 = new LoopDemandRoute(distances,demands);
-		LoopDemandRoute route2 = new LoopDemandRoute(distances,demands);
+		LoopDemandRoute route1 = new LoopDemandRoute(distances,demands,capacity);
+		LoopDemandRoute route2 = new LoopDemandRoute(distances,demands,capacity);
 		
 		route1.addAll(new int[] {1,2});
 		route2.addAll(new int[] {3,4});
@@ -160,7 +161,7 @@ public class RouteTest {
 		Arrays.fill(demands, 1);
 		
 		//Change
-		LoopDemandRoute route = new LoopDemandRoute(distances,demands);
+		LoopDemandRoute route = new LoopDemandRoute(distances,demands,capacity);
 		route.add(1);
 		route.add(2);
 		route.add(3);
@@ -232,8 +233,8 @@ public class RouteTest {
 		Arrays.fill(demands, 1);
 		
 		//Change
-		ImplicitLoopDemandRoute route1 = new ImplicitLoopDemandRoute(distances,demands);
-		ImplicitLoopDemandRoute route2 = new ImplicitLoopDemandRoute(distances,demands);
+		ImplicitLoopDemandRoute route1 = new ImplicitLoopDemandRoute(distances,demands,capacity);
+		ImplicitLoopDemandRoute route2 = new ImplicitLoopDemandRoute(distances,demands,capacity);
 		
 		route1.addAll(new int[] {1,2});
 		route2.addAll(new int[] {3,4});
@@ -261,7 +262,7 @@ public class RouteTest {
 		Arrays.fill(demands, 1);
 		
 		//Change
-		ImplicitLoopDemandRoute route = new ImplicitLoopDemandRoute(distances,demands);
+		ImplicitLoopDemandRoute route = new ImplicitLoopDemandRoute(distances,demands,capacity);
 		route.add(1);
 		route.add(2);
 		route.add(3);

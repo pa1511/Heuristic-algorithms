@@ -21,8 +21,15 @@ public final class MergeRouteNG implements INeighborGenerator<DemandRoutesSoluti
 	public void randomNeighbor(DemandRoutesSolution element, DemandRoutesSolution neighbor) {				
 		DemandRoute route1 = neighbor.getNonEmpty(random);
 		DemandRoute route2 = neighbor.getNonEmpty(random);
+		
+		if(route1.capacity>route2.capacity) {
+			DemandRoute t = route1;
+			route1 = route2;
+			route2 = t;
+		}
+
 								
-		if(route1==route2 || route1.getDemand()+route2.getDemand()>description.capacity) {
+		if(route1==route2 || route1.getDemand()+route2.getDemand()>route2.capacity) {
 			return;
 		}
 
